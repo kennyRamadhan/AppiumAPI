@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
+  <reporter-output>
+    <line>
+      <![CDATA[Permission Level : private]]>
+    </line>
+    <line>
+      <![CDATA[Board Id : 6606fb667324cdf6b0b647cf]]>
+    </line>
+    <line>
+      <![CDATA[Board Name : Flip Test Engineer]]>
+    </line>
+    <line>
+      <![CDATA[View Type Is : Board]]>
+    </line>
+    <line>
+      <![CDATA[Enabled : true]]>
+    </line>
+    <line>
+      <![CDATA[List Id To Do : 6606fb68f018a9cef8219820]]>
+    </line>
+    <line>
+      <![CDATA[List Name : To-Do]]>
+    </line>
+    <line>
+      <![CDATA[List Status Closed :false]]>
+    </line>
+    <line>
+      <![CDATA[List Id In Progress : 6606fb693a008c5c89a99199]]>
+    </line>
+    <line>
+      <![CDATA[List Name : InProgress]]>
+    </line>
+    <line>
+      <![CDATA[List Status Closed : false]]>
+    </line>
+    <line>
+      <![CDATA[List Id Completed : 6606fb691fcf4be0e9b2955d]]>
+    </line>
+    <line>
+      <![CDATA[List Name :Completed]]>
+    </line>
+    <line>
+      <![CDATA[List Status Closed : false]]>
+    </line>
+    <line>
+      <![CDATA[List Id In Testing :6606fb6a30dc02fb2173c0d1]]>
+    </line>
+    <line>
+      <![CDATA[List Name : In Testing]]>
+    </line>
+    <line>
+      <![CDATA[List Status Closed : false]]>
+    </line>
+    <line>
+      <![CDATA[List Id Done : 6606fb6b027b41a7f5678cfd]]>
+    </line>
+    <line>
+      <![CDATA[List Name : Done]]>
+    </line>
+    <line>
+      <![CDATA[List Status Closed : false]]>
+    </line>
+    <line>
+      <![CDATA[List Id Deployed : 6606fb6b72cb70251162022d]]>
+    </line>
+    <line>
+      <![CDATA[List Name : Deployed]]>
+    </line>
+    <line>
+      <![CDATA[List Status Closed : false]]>
+    </line>
+    <line>
+      <![CDATA[Cards Id Automation API : 6606fb6c250f8c3da9a82316]]>
+    </line>
+    <line>
+      <![CDATA[Cards Name : Automation API]]>
+    </line>
+    <line>
+      <![CDATA[Cards Status Closed : false]]>
+    </line>
+    <line>
+      <![CDATA[Cards Id Automation API : 6606fb6c250f8c3da9a82316]]>
+    </line>
+    <line>
+      <![CDATA[Actual Board Id : 6606fb667324cdf6b0b647cf]]>
+    </line>
+    <line>
+      <![CDATA[Current List Id : 6606fb693a008c5c89a99199]]>
+    </line>
+    <line>
+      <![CDATA[Cards Id Automation API : 6606fb6c250f8c3da9a82316]]>
+    </line>
+    <line>
+      <![CDATA[Actual Board Id : 6606fb667324cdf6b0b647cf]]>
+    </line>
+    <line>
+      <![CDATA[Current List Id : 6606fb6a30dc02fb2173c0d1]]>
+    </line>
+    <line>
+      <![CDATA[Cards Id Automation API : 6606fb6c250f8c3da9a82316]]>
+    </line>
+    <line>
+      <![CDATA[Actual Board Id : 6606fb667324cdf6b0b647cf]]>
+    </line>
+    <line>
+      <![CDATA[Current List Id : 6606fb6b027b41a7f5678cfd]]>
+    </line>
+    <line>
+      <![CDATA[Cards Id Automation API : 6606fb6c250f8c3da9a82316]]>
+    </line>
+    <line>
+      <![CDATA[Actual Board Id : 6606fb667324cdf6b0b647cf]]>
+    </line>
+    <line>
+      <![CDATA[Current List Id : 6606fb6b72cb70251162022d]]>
+    </line>
+    <line>
+      <![CDATA[Cards Id Automation API : 6606fb6c250f8c3da9a82316]]>
+    </line>
+    <line>
+      <![CDATA[Actual Board Id : 6606fb667324cdf6b0b647cf]]>
+    </line>
+    <line>
+      <![CDATA[Current List Id : 6606fb691fcf4be0e9b2955d]]>
+    </line>
+  </reporter-output>
+  <suite started-at="2024-03-30T00:33:26 WIB" name="Default suite" finished-at="2024-03-30T00:33:40 WIB" duration-ms="14208">
+    <groups>
+    </groups>
+    <test started-at="2024-03-30T00:33:26 WIB" name="Default test" finished-at="2024-03-30T00:33:40 WIB" duration-ms="14208">
+      <class name="createNewBoard">
+        <test-method signature="E2E()[pri:0, instance:createNewBoard@1aafa419]" started-at="2024-03-30T00:33:26 WIB" name="E2E" finished-at="2024-03-30T00:33:40 WIB" duration-ms="14118" status="PASS">
+          <reporter-output>
+            <line>
+              <![CDATA[Permission Level : private]]>
+            </line>
+            <line>
+              <![CDATA[Board Id : 6606fb667324cdf6b0b647cf]]>
+            </line>
+            <line>
+              <![CDATA[Board Name : Flip Test Engineer]]>
+            </line>
+            <line>
+              <![CDATA[View Type Is : Board]]>
+            </line>
+            <line>
+              <![CDATA[Enabled : true]]>
+            </line>
+            <line>
+              <![CDATA[List Id To Do : 6606fb68f018a9cef8219820]]>
+            </line>
+            <line>
+              <![CDATA[List Name : To-Do]]>
+            </line>
+            <line>
+              <![CDATA[List Status Closed :false]]>
+            </line>
+            <line>
+              <![CDATA[List Id In Progress : 6606fb693a008c5c89a99199]]>
+            </line>
+            <line>
+              <![CDATA[List Name : InProgress]]>
+            </line>
+            <line>
+              <![CDATA[List Status Closed : false]]>
+            </line>
+            <line>
+              <![CDATA[List Id Completed : 6606fb691fcf4be0e9b2955d]]>
+            </line>
+            <line>
+              <![CDATA[List Name :Completed]]>
+            </line>
+            <line>
+              <![CDATA[List Status Closed : false]]>
+            </line>
+            <line>
+              <![CDATA[List Id In Testing :6606fb6a30dc02fb2173c0d1]]>
+            </line>
+            <line>
+              <![CDATA[List Name : In Testing]]>
+            </line>
+            <line>
+              <![CDATA[List Status Closed : false]]>
+            </line>
+            <line>
+              <![CDATA[List Id Done : 6606fb6b027b41a7f5678cfd]]>
+            </line>
+            <line>
+              <![CDATA[List Name : Done]]>
+            </line>
+            <line>
+              <![CDATA[List Status Closed : false]]>
+            </line>
+            <line>
+              <![CDATA[List Id Deployed : 6606fb6b72cb70251162022d]]>
+            </line>
+            <line>
+              <![CDATA[List Name : Deployed]]>
+            </line>
+            <line>
+              <![CDATA[List Status Closed : false]]>
+            </line>
+            <line>
+              <![CDATA[Cards Id Automation API : 6606fb6c250f8c3da9a82316]]>
+            </line>
+            <line>
+              <![CDATA[Cards Name : Automation API]]>
+            </line>
+            <line>
+              <![CDATA[Cards Status Closed : false]]>
+            </line>
+            <line>
+              <![CDATA[Cards Id Automation API : 6606fb6c250f8c3da9a82316]]>
+            </line>
+            <line>
+              <![CDATA[Actual Board Id : 6606fb667324cdf6b0b647cf]]>
+            </line>
+            <line>
+              <![CDATA[Current List Id : 6606fb693a008c5c89a99199]]>
+            </line>
+            <line>
+              <![CDATA[Cards Id Automation API : 6606fb6c250f8c3da9a82316]]>
+            </line>
+            <line>
+              <![CDATA[Actual Board Id : 6606fb667324cdf6b0b647cf]]>
+            </line>
+            <line>
+              <![CDATA[Current List Id : 6606fb6a30dc02fb2173c0d1]]>
+            </line>
+            <line>
+              <![CDATA[Cards Id Automation API : 6606fb6c250f8c3da9a82316]]>
+            </line>
+            <line>
+              <![CDATA[Actual Board Id : 6606fb667324cdf6b0b647cf]]>
+            </line>
+            <line>
+              <![CDATA[Current List Id : 6606fb6b027b41a7f5678cfd]]>
+            </line>
+            <line>
+              <![CDATA[Cards Id Automation API : 6606fb6c250f8c3da9a82316]]>
+            </line>
+            <line>
+              <![CDATA[Actual Board Id : 6606fb667324cdf6b0b647cf]]>
+            </line>
+            <line>
+              <![CDATA[Current List Id : 6606fb6b72cb70251162022d]]>
+            </line>
+            <line>
+              <![CDATA[Cards Id Automation API : 6606fb6c250f8c3da9a82316]]>
+            </line>
+            <line>
+              <![CDATA[Actual Board Id : 6606fb667324cdf6b0b647cf]]>
+            </line>
+            <line>
+              <![CDATA[Current List Id : 6606fb691fcf4be0e9b2955d]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- E2E -->
+      </class> <!-- createNewBoard -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>
