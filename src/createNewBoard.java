@@ -2,13 +2,9 @@ import io.restassured.RestAssured;
 import io.restassured.path.json.JsonPath;
 import static io.restassured.RestAssured.*;
 import static org.hamcrest.Matchers.*;
-
-
 import org.testng.Assert;
 import org.testng.Reporter;
 import org.testng.annotations.Test;
-
-
 import files.data;
 import files.reUsable;
 
@@ -20,7 +16,8 @@ public class createNewBoard {
 	{
 		
 //		 Base URL
-		 RestAssured.baseURI = "https://api.trello.com/1/";
+		RestAssured.baseURI = "https://api.trello.com/1/";
+		 
 		 
 //		 A. Create Board and verify response status code should be 200
 //		 OK, assert board name matching with input data, permissionLevel should be
@@ -40,7 +37,7 @@ public class createNewBoard {
 		JsonPath js = reUsable.extractJson(responseBoard);
 		
 
-		String boardID = js.getString("id");
+		 String boardID = js.getString("id");
 		String permissionLevel = js.getString("prefs.permissionLevel");
 		String name	=	js.getString("name");
 		String viewType = js.getString("prefs.switcherViews.viewType[0]");
@@ -103,7 +100,7 @@ public class createNewBoard {
 				.body("idBoard",equalTo(boardID))
 				.body("closed", equalTo(false))
 				.extract().asString();
-//	
+	
 		JsonPath jsListInProgress = reUsable.extractJson(responseInProgress);
 		String listInProgressId = jsListInProgress.getString("id");
 		String listNameInProgress = jsListInProgress.getString("name");
@@ -260,7 +257,7 @@ public class createNewBoard {
 		Assert.assertEquals(cardsId1, cardsAPI_ID);
 		Assert.assertEquals(actualBoardId1,boardID);
 		Assert.assertEquals(currentListId1,listInProgressId);
-//		
+		
 //		//print cardId and listId when moving to the next list within the same board.
 		Reporter.log("Cards Id Automation API : "+cardsId1);
 		Reporter.log("Actual Board Id : "+actualBoardId1);
@@ -292,7 +289,6 @@ public class createNewBoard {
 		Reporter.log("Actual Board Id : "+actualBoardId2);
 		Reporter.log("Current List Id : "+currentListId2);
 		
-//		
 		String responseMoveCardsToDone = given().pathParam("id", cardsAPI_ID)
 				.queryParam("boardId", boardID)
 				.queryParam("idList", listDoneId)
@@ -318,7 +314,7 @@ public class createNewBoard {
 		Reporter.log("Cards Id Automation API : "+cardsId3);
 		Reporter.log("Actual Board Id : "+actualBoardId3);
 		Reporter.log("Current List Id : "+currentListId3);
-//		
+		
 		
 		String responseMoveCardsToDeployed = given().pathParam("id", cardsAPI_ID)
 				.queryParam("boardId", boardID)
@@ -347,7 +343,7 @@ public class createNewBoard {
 		Reporter.log("Cards Id Automation API : "+cardsId4);
 		Reporter.log("Actual Board Id : "+actualBoardId4);
 		Reporter.log("Current List Id : "+currentListId4);
-//		
+
 		String responseMoveCardsToCompleted = given().pathParam("id", cardsAPI_ID)
 				.queryParam("boardId", boardID)
 				.queryParam("idList", listCompletedId)
@@ -388,6 +384,7 @@ public class createNewBoard {
 		
 		
 	}
+	
 	
 	
 

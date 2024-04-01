@@ -14,3 +14,6 @@ E. Library used in this project :
 2. TestNG Reports
 3. Hamcrest
 4. Rest Assured
+
+
+IMPORTANT!!! : If you encountered any issues or some errors make sure you updated the project by Right-click on the project -> Go to Maven -> Update project. . I already make sure in my local machine that my project works properly and no errors so if there is a problems it must be about wrong path or dependencies that can be solved by clean your project or updated your project

@@ -4,14 +4,14 @@
            failures="0"
            errors="0"
            skipped="0"
-           time="14,613">
+           time="13,826">
     <properties></properties>
 
 
 
             <testcase
                 name="E2E"
-                time="14,613"
+                time="13,826"
                 classname="createNewBoard">
             </testcase>
 </testsuite>

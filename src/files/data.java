@@ -1,5 +1,6 @@
 package files;
 
+
 public class data {
 	
 	public static String key(){
