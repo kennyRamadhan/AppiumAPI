@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
+<testng-results ignored="0" total="5" passed="5" failed="0" skipped="0">
   <reporter-output>
     <line>
       <![CDATA[Permission Level : private]]>
     </line>
     <line>
-      <![CDATA[Board Id : 660aedd5475fa76d1fa4a88a]]>
+      <![CDATA[Board Id : 66158eea34a16d2be334e16c]]>
     </line>
     <line>
       <![CDATA[Board Name : Flip Test Engineer]]>
@@ -17,7 +17,7 @@
       <![CDATA[Enabled : true]]>
     </line>
     <line>
-      <![CDATA[List Id To Do : 660aedd6027b1ff1c1f051d9]]>
+      <![CDATA[List Id To Do : 66158eec7c7bb0318bae7208]]>
     </line>
     <line>
       <![CDATA[List Name : To-Do]]>
@@ -26,7 +26,7 @@
       <![CDATA[List Status Closed :false]]>
     </line>
     <line>
-      <![CDATA[List Id In Progress : 660aedd762dbefc5b524c554]]>
+      <![CDATA[List Id In Progress : 66158eecf094b79bb4e9c3c4]]>
     </line>
     <line>
       <![CDATA[List Name : InProgress]]>
@@ -35,7 +35,7 @@
       <![CDATA[List Status Closed : false]]>
     </line>
     <line>
-      <![CDATA[List Id Completed : 660aedd8b723d67cd33d406e]]>
+      <![CDATA[List Id Completed : 66158eed79e49c9dfcf128c3]]>
     </line>
     <line>
       <![CDATA[List Name :Completed]]>
@@ -44,7 +44,7 @@
       <![CDATA[List Status Closed : false]]>
     </line>
     <line>
-      <![CDATA[List Id In Testing :660aedd949872cbb692128aa]]>
+      <![CDATA[List Id In Testing :66158eeecb6ca76155962b20]]>
     </line>
     <line>
       <![CDATA[List Name : In Testing]]>
@@ -53,7 +53,7 @@
       <![CDATA[List Status Closed : false]]>
     </line>
     <line>
-      <![CDATA[List Id Done : 660aedd9145ecfc6957f4a96]]>
+      <![CDATA[List Id Done : 66158eeef6f1bcf9fd901fe2]]>
     </line>
     <line>
       <![CDATA[List Name : Done]]>
@@ -62,7 +62,7 @@
       <![CDATA[List Status Closed : false]]>
     </line>
     <line>
-      <![CDATA[List Id Deployed : 660aedda3e07ad32683045b8]]>
+      <![CDATA[List Id Deployed : 66158eef6d5694fc89af09b5]]>
     </line>
     <line>
       <![CDATA[List Name : Deployed]]>
@@ -71,7 +71,7 @@
       <![CDATA[List Status Closed : false]]>
     </line>
     <line>
-      <![CDATA[Cards Id Automation API : 660aeddaa850bf9ea886269f]]>
+      <![CDATA[Cards Id Automation API : 66158ef07823e19069d9aa61]]>
     </line>
     <line>
       <![CDATA[Cards Name : Automation API]]>
@@ -80,63 +80,63 @@
       <![CDATA[Cards Status Closed : false]]>
     </line>
     <line>
-      <![CDATA[Cards Id Automation API : 660aeddaa850bf9ea886269f]]>
+      <![CDATA[Cards Id Automation API : 66158ef07823e19069d9aa61]]>
     </line>
     <line>
-      <![CDATA[Actual Board Id : 660aedd5475fa76d1fa4a88a]]>
+      <![CDATA[Actual Board Id : 66158eea34a16d2be334e16c]]>
     </line>
     <line>
-      <![CDATA[Current List Id : 660aedd762dbefc5b524c554]]>
+      <![CDATA[Current List Id : 66158eecf094b79bb4e9c3c4]]>
     </line>
     <line>
-      <![CDATA[Cards Id Automation API : 660aeddaa850bf9ea886269f]]>
+      <![CDATA[Cards Id Automation API : 66158ef07823e19069d9aa61]]>
     </line>
     <line>
-      <![CDATA[Actual Board Id : 660aedd5475fa76d1fa4a88a]]>
+      <![CDATA[Actual Board Id : 66158eea34a16d2be334e16c]]>
     </line>
     <line>
-      <![CDATA[Current List Id : 660aedd949872cbb692128aa]]>
+      <![CDATA[Current List Id : 66158eeecb6ca76155962b20]]>
     </line>
     <line>
-      <![CDATA[Cards Id Automation API : 660aeddaa850bf9ea886269f]]>
+      <![CDATA[Cards Id Automation API : 66158ef07823e19069d9aa61]]>
     </line>
     <line>
-      <![CDATA[Actual Board Id : 660aedd5475fa76d1fa4a88a]]>
+      <![CDATA[Actual Board Id : 66158eea34a16d2be334e16c]]>
     </line>
     <line>
-      <![CDATA[Current List Id : 660aedd9145ecfc6957f4a96]]>
+      <![CDATA[Current List Id : 66158eeef6f1bcf9fd901fe2]]>
     </line>
     <line>
-      <![CDATA[Cards Id Automation API : 660aeddaa850bf9ea886269f]]>
+      <![CDATA[Cards Id Automation API : 66158ef07823e19069d9aa61]]>
     </line>
     <line>
-      <![CDATA[Actual Board Id : 660aedd5475fa76d1fa4a88a]]>
+      <![CDATA[Actual Board Id : 66158eea34a16d2be334e16c]]>
     </line>
     <line>
-      <![CDATA[Current List Id : 660aedda3e07ad32683045b8]]>
+      <![CDATA[Current List Id : 66158eef6d5694fc89af09b5]]>
     </line>
     <line>
-      <![CDATA[Cards Id Automation API : 660aeddaa850bf9ea886269f]]>
+      <![CDATA[Cards Id Automation API : 66158ef07823e19069d9aa61]]>
     </line>
     <line>
-      <![CDATA[Actual Board Id : 660aedd5475fa76d1fa4a88a]]>
+      <![CDATA[Actual Board Id : 66158eea34a16d2be334e16c]]>
     </line>
     <line>
-      <![CDATA[Current List Id : 660aedd8b723d67cd33d406e]]>
+      <![CDATA[Current List Id : 66158eed79e49c9dfcf128c3]]>
     </line>
   </reporter-output>
-  <suite started-at="2024-04-02T00:24:36 WIB" name="Default suite" finished-at="2024-04-02T00:24:50 WIB" duration-ms="13869">
+  <suite started-at="2024-04-10T01:54:33 WIB" name="Default suite" finished-at="2024-04-10T01:54:48 WIB" duration-ms="14780">
     <groups>
     </groups>
-    <test started-at="2024-04-02T00:24:36 WIB" name="Default test" finished-at="2024-04-02T00:24:50 WIB" duration-ms="13869">
-      <class name="createNewBoard">
-        <test-method signature="E2E()[pri:0, instance:createNewBoard@1aafa419]" started-at="2024-04-02T00:24:36 WIB" name="E2E" finished-at="2024-04-02T00:24:50 WIB" duration-ms="13826" status="PASS">
+    <test started-at="2024-04-10T01:54:33 WIB" name="Default test" finished-at="2024-04-10T01:54:48 WIB" duration-ms="14780">
+      <class name="TrelloE2E">
+        <test-method signature="CreateBoards()[pri:0, instance:TrelloE2E@302c971f]" started-at="2024-04-10T01:54:34 WIB" name="CreateBoards" finished-at="2024-04-10T01:54:38 WIB" duration-ms="4305" status="PASS">
           <reporter-output>
             <line>
               <![CDATA[Permission Level : private]]>
             </line>
             <line>
-              <![CDATA[Board Id : 660aedd5475fa76d1fa4a88a]]>
+              <![CDATA[Board Id : 66158eea34a16d2be334e16c]]>
             </line>
             <line>
               <![CDATA[Board Name : Flip Test Engineer]]>
@@ -147,8 +147,12 @@
             <line>
               <![CDATA[Enabled : true]]>
             </line>
+          </reporter-output>
+        </test-method> <!-- CreateBoards -->
+        <test-method signature="CreateList()[pri:1, instance:TrelloE2E@302c971f]" started-at="2024-04-10T01:54:38 WIB" name="CreateList" finished-at="2024-04-10T01:54:42 WIB" duration-ms="4026" status="PASS">
+          <reporter-output>
             <line>
-              <![CDATA[List Id To Do : 660aedd6027b1ff1c1f051d9]]>
+              <![CDATA[List Id To Do : 66158eec7c7bb0318bae7208]]>
             </line>
             <line>
               <![CDATA[List Name : To-Do]]>
@@ -157,7 +161,7 @@
               <![CDATA[List Status Closed :false]]>
             </line>
             <line>
-              <![CDATA[List Id In Progress : 660aedd762dbefc5b524c554]]>
+              <![CDATA[List Id In Progress : 66158eecf094b79bb4e9c3c4]]>
             </line>
             <line>
               <![CDATA[List Name : InProgress]]>
@@ -166,7 +170,7 @@
               <![CDATA[List Status Closed : false]]>
             </line>
             <line>
-              <![CDATA[List Id Completed : 660aedd8b723d67cd33d406e]]>
+              <![CDATA[List Id Completed : 66158eed79e49c9dfcf128c3]]>
             </line>
             <line>
               <![CDATA[List Name :Completed]]>
@@ -175,7 +179,7 @@
               <![CDATA[List Status Closed : false]]>
             </line>
             <line>
-              <![CDATA[List Id In Testing :660aedd949872cbb692128aa]]>
+              <![CDATA[List Id In Testing :66158eeecb6ca76155962b20]]>
             </line>
             <line>
               <![CDATA[List Name : In Testing]]>
@@ -184,7 +188,7 @@
               <![CDATA[List Status Closed : false]]>
             </line>
             <line>
-              <![CDATA[List Id Done : 660aedd9145ecfc6957f4a96]]>
+              <![CDATA[List Id Done : 66158eeef6f1bcf9fd901fe2]]>
             </line>
             <line>
               <![CDATA[List Name : Done]]>
@@ -193,7 +197,7 @@
               <![CDATA[List Status Closed : false]]>
             </line>
             <line>
-              <![CDATA[List Id Deployed : 660aedda3e07ad32683045b8]]>
+              <![CDATA[List Id Deployed : 66158eef6d5694fc89af09b5]]>
             </line>
             <line>
               <![CDATA[List Name : Deployed]]>
@@ -201,8 +205,12 @@
             <line>
               <![CDATA[List Status Closed : false]]>
             </line>
+          </reporter-output>
+        </test-method> <!-- CreateList -->
+        <test-method signature="createCards()[pri:2, instance:TrelloE2E@302c971f]" started-at="2024-04-10T01:54:42 WIB" name="createCards" finished-at="2024-04-10T01:54:43 WIB" duration-ms="854" status="PASS">
+          <reporter-output>
             <line>
-              <![CDATA[Cards Id Automation API : 660aeddaa850bf9ea886269f]]>
+              <![CDATA[Cards Id Automation API : 66158ef07823e19069d9aa61]]>
             </line>
             <line>
               <![CDATA[Cards Name : Automation API]]>
@@ -210,54 +218,62 @@
             <line>
               <![CDATA[Cards Status Closed : false]]>
             </line>
+          </reporter-output>
+        </test-method> <!-- createCards -->
+        <test-method signature="movingCardsBetweenCreatedList()[pri:3, instance:TrelloE2E@302c971f]" started-at="2024-04-10T01:54:43 WIB" name="movingCardsBetweenCreatedList" finished-at="2024-04-10T01:54:47 WIB" duration-ms="3736" status="PASS">
+          <reporter-output>
             <line>
-              <![CDATA[Cards Id Automation API : 660aeddaa850bf9ea886269f]]>
+              <![CDATA[Cards Id Automation API : 66158ef07823e19069d9aa61]]>
             </line>
             <line>
-              <![CDATA[Actual Board Id : 660aedd5475fa76d1fa4a88a]]>
+              <![CDATA[Actual Board Id : 66158eea34a16d2be334e16c]]>
             </line>
             <line>
-              <![CDATA[Current List Id : 660aedd762dbefc5b524c554]]>
+              <![CDATA[Current List Id : 66158eecf094b79bb4e9c3c4]]>
             </line>
             <line>
-              <![CDATA[Cards Id Automation API : 660aeddaa850bf9ea886269f]]>
+              <![CDATA[Cards Id Automation API : 66158ef07823e19069d9aa61]]>
             </line>
             <line>
-              <![CDATA[Actual Board Id : 660aedd5475fa76d1fa4a88a]]>
+              <![CDATA[Actual Board Id : 66158eea34a16d2be334e16c]]>
             </line>
             <line>
-              <![CDATA[Current List Id : 660aedd949872cbb692128aa]]>
+              <![CDATA[Current List Id : 66158eeecb6ca76155962b20]]>
             </line>
             <line>
-              <![CDATA[Cards Id Automation API : 660aeddaa850bf9ea886269f]]>
+              <![CDATA[Cards Id Automation API : 66158ef07823e19069d9aa61]]>
             </line>
             <line>
-              <![CDATA[Actual Board Id : 660aedd5475fa76d1fa4a88a]]>
+              <![CDATA[Actual Board Id : 66158eea34a16d2be334e16c]]>
             </line>
             <line>
-              <![CDATA[Current List Id : 660aedd9145ecfc6957f4a96]]>
+              <![CDATA[Current List Id : 66158eeef6f1bcf9fd901fe2]]>
             </line>
             <line>
-              <![CDATA[Cards Id Automation API : 660aeddaa850bf9ea886269f]]>
+              <![CDATA[Cards Id Automation API : 66158ef07823e19069d9aa61]]>
             </line>
             <line>
-              <![CDATA[Actual Board Id : 660aedd5475fa76d1fa4a88a]]>
+              <![CDATA[Actual Board Id : 66158eea34a16d2be334e16c]]>
             </line>
             <line>
-              <![CDATA[Current List Id : 660aedda3e07ad32683045b8]]>
+              <![CDATA[Current List Id : 66158eef6d5694fc89af09b5]]>
             </line>
             <line>
-              <![CDATA[Cards Id Automation API : 660aeddaa850bf9ea886269f]]>
+              <![CDATA[Cards Id Automation API : 66158ef07823e19069d9aa61]]>
             </line>
             <line>
-              <![CDATA[Actual Board Id : 660aedd5475fa76d1fa4a88a]]>
+              <![CDATA[Actual Board Id : 66158eea34a16d2be334e16c]]>
             </line>
             <line>
-              <![CDATA[Current List Id : 660aedd8b723d67cd33d406e]]>
+              <![CDATA[Current List Id : 66158eed79e49c9dfcf128c3]]>
             </line>
           </reporter-output>
-        </test-method> <!-- E2E -->
-      </class> <!-- createNewBoard -->
+        </test-method> <!-- movingCardsBetweenCreatedList -->
+        <test-method signature="DeleteBoards()[pri:4, instance:TrelloE2E@302c971f]" started-at="2024-04-10T01:54:47 WIB" name="DeleteBoards" finished-at="2024-04-10T01:54:48 WIB" duration-ms="1688" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- DeleteBoards -->
+      </class> <!-- TrelloE2E -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

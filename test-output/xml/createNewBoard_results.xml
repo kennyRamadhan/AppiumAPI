@@ -1,17 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testsuite name="Default test"
-           tests="1"
+           tests="2"
            failures="0"
            errors="0"
            skipped="0"
-           time="13,826">
+           time="4.820">
     <properties></properties>
 
 
 
             <testcase
+                name="createList"
+                time="0.725"
+                classname="createNewBoard">
+            </testcase>
+            <testcase
                 name="E2E"
-                time="13,826"
+                time="4.095"
                 classname="createNewBoard">
             </testcase>
 </testsuite>

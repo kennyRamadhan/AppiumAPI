@@ -3,11 +3,12 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="createNewBoard">
+      <class name="TrelloE2E">
         <methods>
-          <include name="E2E"/>
+          <include name="movingCardsBetweenCreatedList"/>
+          <include name="createCards"/>
         </methods>
-      </class> <!-- createNewBoard -->
+      </class> <!-- TrelloE2E -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

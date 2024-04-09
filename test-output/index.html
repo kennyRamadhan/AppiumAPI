@@ -50,7 +50,7 @@
               <ul>
                 <li>
                   <a href="#" panel-name="test-xml-Default_suite" class="navigator-link ">
-                    <span>C:\Users\KenyRamadhan\AppData\Local\Temp\testng-eclipse--1341192677\testng-customsuite.xml</span>
+                    <span>C:\Users\KenyRamadhan\AppData\Local\Temp\testng-eclipse-2010714051\testng-customsuite.xml</span>
                   </a> <!-- navigator-link  -->
                 </li>
                 <li>
@@ -92,7 +92,7 @@
               <div class="suite-section-content">
                 <ul>
                   <li>
-                    <span class="method-stats">1 method,   1 passed</span>
+                    <span class="method-stats">5 methods,   5 passed</span>
                   </li>
                   <li>
                     <span class="method-list-title passed">Passed methods</span>
@@ -103,7 +103,27 @@
                     <div class="method-list-content passed suite-Default_suite">
                       <span>
                         <img src="passed.png" width="3%"/>
-                        <a href="#" panel-name="suite-Default_suite" title="createNewBoard" class="method navigator-link" hash-for-method="E2E">E2E</a> <!-- method navigator-link -->
+                        <a href="#" panel-name="suite-Default_suite" title="TrelloE2E" class="method navigator-link" hash-for-method="CreateBoards">CreateBoards</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Default_suite" title="TrelloE2E" class="method navigator-link" hash-for-method="CreateList">CreateList</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Default_suite" title="TrelloE2E" class="method navigator-link" hash-for-method="DeleteBoards">DeleteBoards</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Default_suite" title="TrelloE2E" class="method navigator-link" hash-for-method="createCards">createCards</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Default_suite" title="TrelloE2E" class="method navigator-link" hash-for-method="movingCardsBetweenCreatedList">movingCardsBetweenCreatedList</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                     </div> <!-- method-list-content passed suite-Default_suite -->
@@ -121,14 +141,42 @@
           <div class="suite-Default_suite-class-passed">
             <div class="main-panel-header rounded-window-top">
               <img src="passed.png"/>
-              <span class="class-name">createNewBoard</span>
+              <span class="class-name">TrelloE2E</span>
             </div> <!-- main-panel-header rounded-window-top -->
             <div class="main-panel-content rounded-window-bottom">
               <div class="method">
                 <div class="method-content">
-                  <a name="E2E">
-                  </a> <!-- E2E -->
-                  <span class="method-name">E2E</span>
+                  <a name="CreateBoards">
+                  </a> <!-- CreateBoards -->
+                  <span class="method-name">CreateBoards</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="CreateList">
+                  </a> <!-- CreateList -->
+                  <span class="method-name">CreateList</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="DeleteBoards">
+                  </a> <!-- DeleteBoards -->
+                  <span class="method-name">DeleteBoards</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="createCards">
+                  </a> <!-- createCards -->
+                  <span class="method-name">createCards</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="movingCardsBetweenCreatedList">
+                  </a> <!-- movingCardsBetweenCreatedList -->
+                  <span class="method-name">movingCardsBetweenCreatedList</span>
                 </div> <!-- method-content -->
               </div> <!-- method -->
             </div> <!-- main-panel-content rounded-window-bottom -->
@@ -136,7 +184,7 @@
         </div> <!-- panel Default_suite -->
         <div panel-name="test-xml-Default_suite" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">C:\Users\KenyRamadhan\AppData\Local\Temp\testng-eclipse--1341192677\testng-customsuite.xml</span>
+            <span class="header-content">C:\Users\KenyRamadhan\AppData\Local\Temp\testng-eclipse-2010714051\testng-customsuite.xml</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <pre>
@@ -145,7 +193,7 @@
 &lt;suite name=&quot;Default suite&quot; guice-stage=&quot;DEVELOPMENT&quot;&gt;
   &lt;test thread-count=&quot;5&quot; name=&quot;Default test&quot; verbose=&quot;2&quot;&gt;
     &lt;classes&gt;
-      &lt;class name=&quot;createNewBoard&quot;/&gt;
+      &lt;class name=&quot;TrelloE2E&quot;/&gt;
     &lt;/classes&gt;
   &lt;/test&gt; &lt;!-- Default test --&gt;
 &lt;/suite&gt; &lt;!-- Default suite --&gt;
@@ -185,16 +233,32 @@ data.addColumn('number', 'Number');
 data.addColumn('string', 'Method');
 data.addColumn('string', 'Class');
 data.addColumn('number', 'Time (ms)');
-data.addRows(1);
+data.addRows(5);
 data.setCell(0, 0, 0)
-data.setCell(0, 1, 'E2E')
-data.setCell(0, 2, 'createNewBoard')
-data.setCell(0, 3, 13826);
+data.setCell(0, 1, 'CreateBoards')
+data.setCell(0, 2, 'TrelloE2E')
+data.setCell(0, 3, 4305);
+data.setCell(1, 0, 1)
+data.setCell(1, 1, 'CreateList')
+data.setCell(1, 2, 'TrelloE2E')
+data.setCell(1, 3, 4026);
+data.setCell(2, 0, 2)
+data.setCell(2, 1, 'movingCardsBetweenCreatedList')
+data.setCell(2, 2, 'TrelloE2E')
+data.setCell(2, 3, 3736);
+data.setCell(3, 0, 3)
+data.setCell(3, 1, 'DeleteBoards')
+data.setCell(3, 2, 'TrelloE2E')
+data.setCell(3, 3, 1688);
+data.setCell(4, 0, 4)
+data.setCell(4, 1, 'createCards')
+data.setCell(4, 2, 'TrelloE2E')
+data.setCell(4, 3, 854);
 window.suiteTableData['Default_suite']= { tableData: data, tableDiv: 'times-div-Default_suite'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 13 seconds</span>
+              <span class="suite-total-time">Total running time: 14 seconds</span>
               <div id="times-div-Default_suite">
               </div> <!-- times-div-Default_suite -->
             </div> <!-- times-div -->
@@ -206,49 +270,64 @@ return data;
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <div class="reporter-method-div">
-              <span class="reporter-method-name">E2E</span>
+              <span class="reporter-method-name">CreateBoards</span>
               <div class="reporter-method-output-div">
                 <span class="reporter-method-output">Permission Level : private</span>
-                <span class="reporter-method-output">Board Id : 660aedd5475fa76d1fa4a88a</span>
+                <span class="reporter-method-output">Board Id : 66158eea34a16d2be334e16c</span>
                 <span class="reporter-method-output">Board Name : Flip Test Engineer</span>
                 <span class="reporter-method-output">View Type Is : Board</span>
                 <span class="reporter-method-output">Enabled : true</span>
-                <span class="reporter-method-output">List Id To Do : 660aedd6027b1ff1c1f051d9</span>
+              </div> <!-- reporter-method-output-div -->
+            </div> <!-- reporter-method-div -->
+            <div class="reporter-method-div">
+              <span class="reporter-method-name">movingCardsBetweenCreatedList</span>
+              <div class="reporter-method-output-div">
+                <span class="reporter-method-output">Cards Id Automation API : 66158ef07823e19069d9aa61</span>
+                <span class="reporter-method-output">Actual Board Id : 66158eea34a16d2be334e16c</span>
+                <span class="reporter-method-output">Current List Id : 66158eecf094b79bb4e9c3c4</span>
+                <span class="reporter-method-output">Cards Id Automation API : 66158ef07823e19069d9aa61</span>
+                <span class="reporter-method-output">Actual Board Id : 66158eea34a16d2be334e16c</span>
+                <span class="reporter-method-output">Current List Id : 66158eeecb6ca76155962b20</span>
+                <span class="reporter-method-output">Cards Id Automation API : 66158ef07823e19069d9aa61</span>
+                <span class="reporter-method-output">Actual Board Id : 66158eea34a16d2be334e16c</span>
+                <span class="reporter-method-output">Current List Id : 66158eeef6f1bcf9fd901fe2</span>
+                <span class="reporter-method-output">Cards Id Automation API : 66158ef07823e19069d9aa61</span>
+                <span class="reporter-method-output">Actual Board Id : 66158eea34a16d2be334e16c</span>
+                <span class="reporter-method-output">Current List Id : 66158eef6d5694fc89af09b5</span>
+                <span class="reporter-method-output">Cards Id Automation API : 66158ef07823e19069d9aa61</span>
+                <span class="reporter-method-output">Actual Board Id : 66158eea34a16d2be334e16c</span>
+                <span class="reporter-method-output">Current List Id : 66158eed79e49c9dfcf128c3</span>
+              </div> <!-- reporter-method-output-div -->
+            </div> <!-- reporter-method-div -->
+            <div class="reporter-method-div">
+              <span class="reporter-method-name">CreateList</span>
+              <div class="reporter-method-output-div">
+                <span class="reporter-method-output">List Id To Do : 66158eec7c7bb0318bae7208</span>
                 <span class="reporter-method-output">List Name : To-Do</span>
                 <span class="reporter-method-output">List Status Closed :false</span>
-                <span class="reporter-method-output">List Id In Progress : 660aedd762dbefc5b524c554</span>
+                <span class="reporter-method-output">List Id In Progress : 66158eecf094b79bb4e9c3c4</span>
                 <span class="reporter-method-output">List Name : InProgress</span>
                 <span class="reporter-method-output">List Status Closed : false</span>
-                <span class="reporter-method-output">List Id Completed : 660aedd8b723d67cd33d406e</span>
+                <span class="reporter-method-output">List Id Completed : 66158eed79e49c9dfcf128c3</span>
                 <span class="reporter-method-output">List Name :Completed</span>
                 <span class="reporter-method-output">List Status Closed : false</span>
-                <span class="reporter-method-output">List Id In Testing :660aedd949872cbb692128aa</span>
+                <span class="reporter-method-output">List Id In Testing :66158eeecb6ca76155962b20</span>
                 <span class="reporter-method-output">List Name : In Testing</span>
                 <span class="reporter-method-output">List Status Closed : false</span>
-                <span class="reporter-method-output">List Id Done : 660aedd9145ecfc6957f4a96</span>
+                <span class="reporter-method-output">List Id Done : 66158eeef6f1bcf9fd901fe2</span>
                 <span class="reporter-method-output">List Name : Done</span>
                 <span class="reporter-method-output">List Status Closed : false</span>
-                <span class="reporter-method-output">List Id Deployed : 660aedda3e07ad32683045b8</span>
+                <span class="reporter-method-output">List Id Deployed : 66158eef6d5694fc89af09b5</span>
                 <span class="reporter-method-output">List Name : Deployed</span>
                 <span class="reporter-method-output">List Status Closed : false</span>
-                <span class="reporter-method-output">Cards Id Automation API : 660aeddaa850bf9ea886269f</span>
+              </div> <!-- reporter-method-output-div -->
+            </div> <!-- reporter-method-div -->
+            <div class="reporter-method-div">
+              <span class="reporter-method-name">createCards</span>
+              <div class="reporter-method-output-div">
+                <span class="reporter-method-output">Cards Id Automation API : 66158ef07823e19069d9aa61</span>
                 <span class="reporter-method-output">Cards Name : Automation API</span>
                 <span class="reporter-method-output">Cards Status Closed : false</span>
-                <span class="reporter-method-output">Cards Id Automation API : 660aeddaa850bf9ea886269f</span>
-                <span class="reporter-method-output">Actual Board Id : 660aedd5475fa76d1fa4a88a</span>
-                <span class="reporter-method-output">Current List Id : 660aedd762dbefc5b524c554</span>
-                <span class="reporter-method-output">Cards Id Automation API : 660aeddaa850bf9ea886269f</span>
-                <span class="reporter-method-output">Actual Board Id : 660aedd5475fa76d1fa4a88a</span>
-                <span class="reporter-method-output">Current List Id : 660aedd949872cbb692128aa</span>
-                <span class="reporter-method-output">Cards Id Automation API : 660aeddaa850bf9ea886269f</span>
-                <span class="reporter-method-output">Actual Board Id : 660aedd5475fa76d1fa4a88a</span>
-                <span class="reporter-method-output">Current List Id : 660aedd9145ecfc6957f4a96</span>
-                <span class="reporter-method-output">Cards Id Automation API : 660aeddaa850bf9ea886269f</span>
-                <span class="reporter-method-output">Actual Board Id : 660aedd5475fa76d1fa4a88a</span>
-                <span class="reporter-method-output">Current List Id : 660aedda3e07ad32683045b8</span>
-                <span class="reporter-method-output">Cards Id Automation API : 660aeddaa850bf9ea886269f</span>
-                <span class="reporter-method-output">Actual Board Id : 660aedd5475fa76d1fa4a88a</span>
-                <span class="reporter-method-output">Current List Id : 660aedd8b723d67cd33d406e</span>
               </div> <!-- reporter-method-output-div -->
             </div> <!-- reporter-method-div -->
           </div> <!-- main-panel-content rounded-window-bottom -->
@@ -266,10 +345,26 @@ return data;
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <div class="chronological-class">
-              <div class="chronological-class-name">createNewBoard</div> <!-- chronological-class-name -->
+              <div class="chronological-class-name">TrelloE2E</div> <!-- chronological-class-name -->
               <div class="test-method">
-                <span class="method-name">E2E</span>
+                <span class="method-name">CreateBoards</span>
                 <span class="method-start">0 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">CreateList</span>
+                <span class="method-start">4403 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">createCards</span>
+                <span class="method-start">8433 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">movingCardsBetweenCreatedList</span>
+                <span class="method-start">9291 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">DeleteBoards</span>
+                <span class="method-start">13030 ms</span>
               </div> <!-- test-method -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->
