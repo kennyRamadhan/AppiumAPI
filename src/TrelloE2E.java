@@ -4,11 +4,12 @@ import static io.restassured.RestAssured.*;
 import static org.hamcrest.Matchers.*;
 import org.testng.Assert;
 import org.testng.Reporter;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import files.data;
 import files.reUsable;
 
-
+@Listeners(files.Listeners.class)
 public class TrelloE2E {
 	
 	private static String boardID;

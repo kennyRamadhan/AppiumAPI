@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="E2E Trello Automation Test" thread-count="1" parallel="classes" preserve-order="true">
-	
+	<listeners>
+		<listener class-name="files.Listeners"></listener>
+	</listeners>
  <test name="Regression1">
     <classes>
 		<class name="TrelloE2E"></class>
