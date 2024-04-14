@@ -9,14 +9,18 @@ import com.aventstack.extentreports.Status;
 
 
 
+
+
+
+
 public class Listeners implements ITestListener {
 	
 	
 	ExtentReportsTestNG reports = new ExtentReportsTestNG();
 	ExtentReports extent = reports.getExtendReport();
-	ExtentTest test;
-	
-	
+	public static ExtentTest test;
+
+
 	
 	@Override
 	public void onTestStart(ITestResult results) {
@@ -30,7 +34,7 @@ public class Listeners implements ITestListener {
 	
 
 		test.log(Status.PASS,"Test Passed");
-		test.createNode(results.getName());
+		
 		
 				
 	}
@@ -66,6 +70,6 @@ public class Listeners implements ITestListener {
 	public void onStart(ITestContext context) {
 	    // not implemented
 	  }
-	
+ 
 
 }

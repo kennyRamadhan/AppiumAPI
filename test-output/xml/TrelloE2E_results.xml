@@ -4,34 +4,34 @@
            failures="0"
            errors="0"
            skipped="0"
-           time="14.282">
+           time="16.681">
     <properties></properties>
 
 
 
             <testcase
                 name="createCards"
-                time="0.812"
-                classname="TrelloE2E">
-            </testcase>
-            <testcase
-                name="CreateList"
-                time="4.100"
+                time="0.963"
                 classname="TrelloE2E">
             </testcase>
             <testcase
                 name="movingCardsBetweenCreatedList"
-                time="3.522"
+                time="4.313"
                 classname="TrelloE2E">
             </testcase>
             <testcase
                 name="DeleteBoards"
-                time="1.561"
+                time="1.788"
                 classname="TrelloE2E">
             </testcase>
             <testcase
                 name="CreateBoards"
-                time="4.287"
+                time="4.677"
+                classname="TrelloE2E">
+            </testcase>
+            <testcase
+                name="CreateList"
+                time="4.940"
                 classname="TrelloE2E">
             </testcase>
 </testsuite>

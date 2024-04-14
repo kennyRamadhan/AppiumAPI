@@ -1,51 +1,66 @@
 import io.restassured.RestAssured;
+import io.restassured.builder.RequestSpecBuilder;
+import io.restassured.filter.log.RequestLoggingFilter;
+import io.restassured.filter.log.ResponseLoggingFilter;
 import io.restassured.path.json.JsonPath;
+import io.restassured.specification.RequestSpecification;
+import io.restassured.response.*;
 import static io.restassured.RestAssured.*;
 import static org.hamcrest.Matchers.*;
 import org.testng.Assert;
-import org.testng.Reporter;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.Status;
 import files.data;
-import files.reUsable;
+
 
 @Listeners(files.Listeners.class)
-public class TrelloE2E {
-	
+public class TrelloE2E extends files.Listeners {
+
 	private static String boardID;
 	private static String cardsAPI_ID;
 	private static String listToDoId;
-	private static String listInProgressId; 
+	private static String listInProgressId;
 	private static String listDeployedId;
 	private static String listDoneId;
 	private static String listInTestingId;
 	private static String listCompletedId;
-	
-	@Test(priority=0)
-	public static void CreateBoards() throws InterruptedException
-	{
+
+	@BeforeClass
+	public void setUp() {
+
+		RestAssured.filters(new RequestLoggingFilter(), new ResponseLoggingFilter());
+		RestAssured.enableLoggingOfRequestAndResponseIfValidationFails();
 		
-//		 
+		RequestSpecification requestSpec = new RequestSpecBuilder()
+				.setBaseUri("https://api.trello.com/1/")
+				.addQueryParam("key", data.key())
+				.addQueryParam("token", data.token())
+				.setContentType("application/json").
+				setAccept("*/*").build().log().all();
+		
+		RestAssured.requestSpecification = requestSpec;
+	}
+
+	@Test(priority = 0)
+	public static void CreateBoards() throws InterruptedException {
+
 //		 Base URL
-		RestAssured.baseURI = "https://api.trello.com/1/";
-		 
-		 
+
 //		 A. Create Board and verify response status code should be 200
 //		 OK, assert board name matching with input data, permissionLevel should be
 //		 ‘private’, viewType should be “Board” and enabled should be ‘true’
-		 
-		 String responseBoard = given().queryParam("name","Flip Test Engineer").queryParam("key",data.key())
-		.queryParam("token",data.token())
-		.header("Content-Type", "application/json")
-		.header("Accept","*/*")
-		.when().post("boards/")
-		.then().log().all().log().all().assertThat().statusCode(200)
-		.body("name",equalTo("Flip Test Engineer"))//	verify response status code should be 200
-		.extract().asString();
 		
-
+		Response response = given().queryParam("name", "Flip Test Engineer")
+				.when().post("boards/")
+				.then()
+				.assertThat().statusCode(200)// verify response status code should be 200
+				.body("name", equalTo("Flip Test Engineer"))
+				.extract().response();
 	
-		JsonPath js = reUsable.extractJson(responseBoard);
+		JsonPath js = response.jsonPath();
 		
 
 		boardID = js.getString("id");
@@ -53,378 +68,460 @@ public class TrelloE2E {
 		String name	=	js.getString("name");
 		String viewType = js.getString("prefs.switcherViews.viewType[0]");
 		String enabled = js.getString("prefs.switcherViews.enabled[0]");
-		
-		//assert board name matching with input data, permissionLevel should be ‘private’, 
-		//viewType should be “Board” and enabled should be ‘true’
+
+		// assert board name matching with input data, permissionLevel should be
+		// ‘private’,
+		// viewType should be “Board” and enabled should be ‘true’
 		Assert.assertEquals(permissionLevel, "private");
-		Assert.assertEquals(name,"Flip Test Engineer");
-		Assert.assertEquals(viewType,"Board");
-		Assert.assertEquals(enabled,"true");
-		
+		Assert.assertEquals(name, "Flip Test Engineer");
+		Assert.assertEquals(viewType, "Board");
+		Assert.assertEquals(enabled, "true");
+
 //		Print 
-		Reporter.log("Permission Level : "+permissionLevel);
-		Reporter.log("Board Id : "+boardID);
-		Reporter.log("Board Name : "+name);
-		Reporter.log("View Type Is : "+viewType);
-		Reporter.log("Enabled : "+enabled);
 		
 		
+		ExtentTest node4 = test.createNode("Create Boards");
+		
+		ExtentTest node3 = node4.createNode("Status Code");
+		node3.log(Status.INFO, ""+response.getStatusCode());
+		
+		ExtentTest node1 = node4.createNode("Response Body");
+		node1.log(Status.INFO,""+response.getBody().asPrettyString());
 
+		ExtentTest node2 = node4.createNode("Assertion");
+		node2.log(Status.INFO, "Board Name Is : " + name);
+		node2.log(Status.INFO, "View Type Is : " + viewType);
+		node2.log(Status.INFO, "Permission Level Is : " + permissionLevel);
+		node2.log(Status.INFO, "Enabled Is : " + enabled);
 
-
-	
 	}
-	
-	
-	@Test(priority=1)
+
+	@Test(priority = 1)
 	public static void CreateList() {
-		
+
 //		B. Create the List on the Board created in previous test ,named
 //		   ‘To-Do’, ‘In progress’, ‘Completed’, ‘In testing’, ‘Done’, ‘Deployed’ and verify name
 //		   matching with input data, boardId, list is opened [“closed” : “false”]
-		
-		String responseListToDo = given().queryParam("name","To-Do").queryParam("key",data.key())
-				.queryParam("token",data.token()).queryParam("idBoard",boardID)
-				.header("Content-Type", "application/json")
-				.header("Accept","*/*")
-				.when().post("lists/")
-				.then().log().all()
+
+		Response responseListToDo = given().queryParam("name", "To-Do")
+				.queryParam("idBoard", boardID)
+				.when().post("lists/").then()
+				.log().all()
 				.assertThat().statusCode(200)
-				
-//				// verify name matching with input data, boardId, list is opened [“closed” : “false”]
-				.body("name",equalTo("To-Do"))
-				.body("idBoard",equalTo(boardID))
+				// verify name matching with input data, boardId, list is opened [“closed” : “false”]
+				.body("name", equalTo("To-Do"))
+				.body("idBoard", equalTo(boardID))
 				.body("closed", equalTo(false))
-				.extract().asString();
-//		
-		JsonPath jsListToDo = reUsable.extractJson(responseListToDo);
-		 listToDoId = jsListToDo.getString("id");
-		String listNameToDoId= jsListToDo.getString("name");
+				.extract().response();
+		
+		//Parsing Json
+		JsonPath jsListToDo = responseListToDo.jsonPath();
+		listToDoId = jsListToDo.getString("id");
+		String listNameToDoId = jsListToDo.getString("name");
 		String listStatusClosedToDo = jsListToDo.getString("closed");
-		
-//		// print name matching with input data, boardId, list is opened [“closed” : “false”]
-		Reporter.log("List Id To Do : "+listToDoId);
-		Reporter.log("List Name : " +listNameToDoId);
-		Reporter.log("List Status Closed :"+listStatusClosedToDo);
-		
-		
-		String responseInProgress = given().queryParam("name","InProgress").queryParam("key",data.key())
-				.queryParam("token",data.token()).queryParam("idBoard",boardID)
-				.header("Content-Type", "application/json")
-				.header("Accept","*/*")
-				.when().post("lists/")
-				.then().log().all()
-				.assertThat().statusCode(200)
-				
-//				// verify name matching with input data, boardId, list is opened [“closed” : “false”]
-				.body("name",equalTo("InProgress"))
-				.body("idBoard",equalTo(boardID))
-				.body("closed", equalTo(false))
-				.extract().asString();
+
+		// print name in Extent Report HTML matching with input data, boardId, list is opened [“closed” : “false”]
+		ExtentTest nodeListTodo = test.createNode("Create List To Do");
+		ExtentTest nodeToDo1 = nodeListTodo.createNode("Status Code");
+		nodeToDo1.log(Status.INFO, ""+responseListToDo.getStatusCode());
+		ExtentTest nodeToDo2 = nodeListTodo.createNode("Response Body");
+		nodeToDo2.log(Status.INFO,""+responseListToDo.getBody().asPrettyString());
+
+		ExtentTest nodeToDo3 = nodeListTodo.createNode("Assertion");
+		nodeToDo3.log(Status.INFO, "List Id :" +listToDoId);
+		nodeToDo3.log(Status.INFO, "List Name Is : " +listNameToDoId);
+		nodeToDo3.log(Status.INFO, "View Type Is : " +listStatusClosedToDo);
 	
-		JsonPath jsListInProgress = reUsable.extractJson(responseInProgress);
-		 listInProgressId = jsListInProgress.getString("id");
-		String listNameInProgress = jsListInProgress.getString("name");
-		String listStatusClosedInProgress= jsListInProgress.getString("closed");
-		
-//		// print name matching with input data, boardId, list is opened [“closed” : “false”]
-		Reporter.log("List Id In Progress : "+listInProgressId);
-		Reporter.log("List Name : "+listNameInProgress);
-		Reporter.log("List Status Closed : "+listStatusClosedInProgress);
-//		
-		String responseCompleted = given().queryParam("name","Completed").queryParam("key",data.key())
-				.queryParam("token",data.token()).queryParam("idBoard",boardID)
-				.header("Content-Type", "application/json")
-				.header("Accept","*/*")
+
+		Response responseInProgress = given().queryParam("name", "InProgress")
+				.queryParam("idBoard", boardID)
 				.when().post("lists/")
-				.then().log().all()
+				.then()
+				.log().all()
 				.assertThat().statusCode(200)
-				
-//				// verify name matching with input data, boardId, list is opened [“closed” : “false”]
-				.body("name",equalTo("Completed"))
-				.body("idBoard",equalTo(boardID))
+				// verify name matching with input data, boardId, list is opened [“closed” : “false”]
+				.body("name", equalTo("InProgress"))
+				.body("idBoard", equalTo(boardID))
 				.body("closed", equalTo(false))
-				.extract().asString();
+				.extract().response();
+
+		JsonPath jsListInProgress = responseInProgress.jsonPath();
+		listInProgressId = jsListInProgress.getString("id");
+		String listNameInProgress = jsListInProgress.getString("name");
+		String listStatusClosedInProgress = jsListInProgress.getString("closed");
+
+//		// print name matching with input data, boardId, list is opened [“closed” : “false”]
+		ExtentTest nodeInprog = test.createNode("Create List In Progress");
+		
+		ExtentTest nodeInprog1 = nodeInprog.createNode("Status Code");
+		nodeInprog1.log(Status.INFO, ""+responseInProgress.getStatusCode());
+		
+		ExtentTest nodeInprog2 = nodeInprog.createNode("Response Body");
+		nodeInprog2.log(Status.INFO,""+responseInProgress.getBody().asPrettyString());
+
+		ExtentTest nodeInProg3 = nodeInprog.createNode("Assertion");
+		nodeInProg3.log(Status.INFO, "List Id :" +listToDoId);
+		nodeInProg3.log(Status.INFO, "List Name Is : " +listNameInProgress);
+		nodeInProg3.log(Status.INFO, "View Type Is : " +listStatusClosedInProgress);
+	
 //		
-		JsonPath jsListCompleted = reUsable.extractJson(responseCompleted);
+		Response responseCompleted = given().queryParam("name", "Completed")
+				.queryParam("idBoard", boardID)
+				.when().post("lists/")
+				.then()
+				.log().all()
+				.assertThat().statusCode(200)
+
+//				// verify name matching with input data, boardId, list is opened [“closed” : “false”]
+				.body("name", equalTo("Completed"))
+				.body("idBoard", equalTo(boardID))
+				.body("closed", equalTo(false))
+				.extract().response();
+//		
+		JsonPath jsListCompleted = responseCompleted.jsonPath();
 		listCompletedId = jsListCompleted.getString("id");
 		String listNameCompleted = jsListCompleted.getString("name");
 		String listStatusClosedCompleted = jsListCompleted.getString("closed");
-		
+
 //		// print name matching with input data, boardId, list is opened [“closed” : “false”]
-		Reporter.log("List Id Completed : "+listCompletedId);
-		Reporter.log("List Name :"+listNameCompleted);
-		Reporter.log("List Status Closed : "+listStatusClosedCompleted);
-		
-		String responseInTesting = given().queryParam("name","In Testing").queryParam("key",data.key())
-				.queryParam("token",data.token()).queryParam("idBoard",boardID)
-				.header("Content-Type", "application/json")
-				.header("Accept","*/*")
+		ExtentTest nodeCmpltd = test.createNode("Create List Completed");
+		ExtentTest nodeCmpltd1 = nodeCmpltd.createNode("Status Code");
+		nodeCmpltd1.log(Status.INFO, ""+responseCompleted.getStatusCode());
+		ExtentTest nodeCmpltd2 = nodeCmpltd.createNode("Response Body");
+		nodeCmpltd2.log(Status.INFO,""+responseCompleted.getBody().asPrettyString());
+
+		ExtentTest nodeCmpltd3 = nodeCmpltd.createNode("Assertion");
+		nodeCmpltd3.log(Status.INFO, "List Id :" +listToDoId);
+		nodeCmpltd3.log(Status.INFO, "List Name Is : " +listNameCompleted);
+		nodeCmpltd3.log(Status.INFO, "View Type Is : " +listStatusClosedCompleted);
+
+		Response responseInTesting = given().queryParam("name", "In Testing")
+				.queryParam("idBoard", boardID)
 				.when().post("lists/")
-				.then().log().all()
+				.then()
+				.log().all()
 				.assertThat().statusCode(200)
-		
-				// verify name matching with input data, boardId, list is opened [“closed” : “false”]
-				.body("name",equalTo("In Testing"))
-				.body("idBoard",equalTo(boardID))
+
+				// verify name matching with input data, boardId, list is opened [“closed” :
+				// “false”]
+				.body("name", equalTo("In Testing"))
+				.body("idBoard", equalTo(boardID))
 				.body("closed", equalTo(false))
-				.extract().asString();
-		
-		JsonPath jsListInTesting = reUsable.extractJson(responseInTesting);
-	 listInTestingId = jsListInTesting.getString("id");
+				.extract().response();
+
+		JsonPath jsListInTesting = responseInTesting.jsonPath();
+		listInTestingId = jsListInTesting.getString("id");
 		String listNameInTesting = jsListInTesting.getString("name");
 		String listStatusClosedInTesting = jsListInTesting.getString("closed");
-	
-		// print name matching with input data, boardId, list is opened [“closed” : “false”]
-		Reporter.log("List Id In Testing :"+listInTestingId);
-		Reporter.log("List Name : "+listNameInTesting);
-		Reporter.log("List Status Closed : "+listStatusClosedInTesting);
+
+		// print name matching with input data, boardId, list is opened [“closed” :
+		// “false”]
+		ExtentTest nodeInTesting = test.createNode("Create List In Testing");
 		
-		String responseDone = given().queryParam("name","Done").queryParam("key",data.key())
-				.queryParam("token",data.token()).queryParam("idBoard",boardID)
-				.header("Content-Type", "application/json")
-				.header("Accept","*/*")
+		ExtentTest nodeInTesting1 = nodeInTesting.createNode("Status Code");
+		nodeInTesting1.log(Status.INFO, ""+responseInTesting.getStatusCode());
+		
+		ExtentTest nodeInTesting2 = nodeInTesting.createNode("Response Body");
+		nodeInTesting2.log(Status.INFO,""+responseInTesting.getBody().asPrettyString());
+
+		ExtentTest nodeInTesting3 = nodeInTesting.createNode("Assertion");
+		nodeInTesting3.log(Status.INFO, "List Id :" +listToDoId);
+		nodeInTesting3.log(Status.INFO, "List Name Is : " +listNameInTesting);
+		nodeInTesting3.log(Status.INFO, "View Type Is : " +listStatusClosedInTesting);
+
+		
+		
+		Response responseDone = given().queryParam("name", "Done")
+				.queryParam("idBoard", boardID)
 				.when().post("lists/")
-				.then().log().all()
+				.then()
+				.log().all()
 				.assertThat().statusCode(200)
-				
-				// verify name matching with input data, boardId, list is opened [“closed” : “false”]
-				.body("name",equalTo("Done"))
-				.body("idBoard",equalTo(boardID))
+
+				// verify name matching with input data, boardId, list is opened [“closed” :
+				// “false”]
+				.body("name", equalTo("Done"))
+				.body("idBoard", equalTo(boardID))
 				.body("closed", equalTo(false))
-				.extract().asString();
-		
-		JsonPath jsListDone = reUsable.extractJson(responseDone);
+				.extract().response();
+
+		JsonPath jsListDone = responseDone.jsonPath();
 		listDoneId = jsListDone.getString("id");
 		String listNameDone = jsListDone.getString("name");
 		String listStatusClosedDone = jsListDone.getString("closed");
+
+		// print name matching with input data, boardId, list is opened [“closed” :
+		// “false”]
+		ExtentTest nodeDone = test.createNode("Create List Done");
 		
-		// print name matching with input data, boardId, list is opened [“closed” : “false”]
-		Reporter.log("List Id Done : "+listDoneId);
-		Reporter.log("List Name : " +listNameDone);
-		Reporter.log("List Status Closed : "+listStatusClosedDone);
+		ExtentTest nodeDone1 = nodeDone.createNode("Status Code");
+		nodeDone1.log(Status.INFO, ""+responseDone.getStatusCode());
 		
-		String responseDeployed = given().queryParam("name","Deployed").queryParam("key",data.key())
-				.queryParam("token",data.token()).queryParam("idBoard",boardID)
-				.header("Content-Type", "application/json")
-				.header("Accept","*/*")
+		ExtentTest nodeDone2 = nodeDone.createNode("Response Body");
+		nodeDone2.log(Status.INFO,""+responseDone.getBody().asPrettyString());
+
+		ExtentTest nodeDone3 = nodeDone.createNode("Assertion");
+		nodeDone3.log(Status.INFO, "List Id :" +listToDoId);
+		nodeDone3.log(Status.INFO, "List Name Is : " +listNameDone);
+		nodeDone3.log(Status.INFO, "View Type Is : " +listStatusClosedDone);
+
+
+		Response responseDeployed = given().queryParam("name","Deployed")
+				.queryParam("idBoard", boardID)
 				.when().post("lists/")
-				.then().log().all()
+				.then()
+				.log().all()
 				.assertThat().statusCode(200)
-				
-				// verify name matching with input data, boardId, list is opened [“closed” : “false”]
-				.body("name",equalTo("Deployed"))
-				.body("idBoard",equalTo(boardID))
+
+				// verify name matching with input data, boardId, list is opened [“closed” :
+				// “false”]
+				.body("name", equalTo("Deployed"))
+				.body("idBoard", equalTo(boardID))
 				.body("closed", equalTo(false))
-				.extract().asString();
-		
-		
-		JsonPath jsListDeployed = reUsable.extractJson(responseDeployed);
-	 listDeployedId = jsListDeployed .getString("id");
-		 String listNameDeployed = jsListDeployed .getString("name");
-		String listStatusClosedDeployed = jsListDeployed .getString("closed");
-		
+				.extract().response();
+
+		JsonPath jsListDeployed = responseDeployed.jsonPath();
+		listDeployedId = jsListDeployed.getString("id");
+		String listNameDeployed = jsListDeployed.getString("name");
+		String listStatusClosedDeployed = jsListDeployed.getString("closed");
+
 		// Print
-		Reporter.log("List Id Deployed : "+listDeployedId);
-		Reporter.log("List Name : "+listNameDeployed);
-		Reporter.log("List Status Closed : "+listStatusClosedDeployed);
+		ExtentTest nodeDplyd = test.createNode("Create List Deployed");
 		
+		ExtentTest nodeDplyd1 = nodeDplyd.createNode("Status Code");
+		nodeDplyd1.log(Status.INFO, ""+responseDeployed.getStatusCode());
 		
+		ExtentTest nodeDplyd2 = nodeDplyd.createNode("Response Body");
+		nodeDplyd2.log(Status.INFO,""+responseDeployed.getBody().asPrettyString());
+
+		ExtentTest nodeDplyd3 = nodeDplyd.createNode("Assertion");
+		nodeDplyd3.log(Status.INFO, "List Id :" +listToDoId);
+		nodeDplyd3.log(Status.INFO, "List Name Is : " +listNameDeployed);
+		nodeDplyd3.log(Status.INFO, "View Type Is : " +listStatusClosedDeployed);
 	}
-	
-	
-	@Test(priority=2)
+
+	@Test(priority = 2)
 	public void createCards() {
+		
 ////	C. Write a test to create a Card in the list ‘To-Do’ created in the last test and verify
 ////	   list name matching the input data, assert ListId and BoardId in response.
 
-	String responseNewCards = given().queryParam("name","Automation API").queryParam("key",data.key())
-			.queryParam("token",data.token()).queryParam("idList",listToDoId)
-			.header("Content-Type", "application/json")
-			.header("Accept","*/*")
-			.when().post("cards/")
-			.then().log().all()
-			.assertThat().statusCode(200)
-			.body("name",equalTo("Automation API")) // verify list name matching the input data in response
-			.body("idList",equalTo(listToDoId)) // assert ListId in response
-			.body("idBoard",equalTo(boardID))// assert BoardId in response
-			.extract().asString();
+		Response responseNewCards = given().queryParam("name", "Automation API")
+				.queryParam("idList", listToDoId)
+				.when().post("cards/")
+				.then()
+				.log().all()
+				.assertThat().statusCode(200)
+				.body("name", equalTo("Automation API")) // verify list name matching the input data response
+				.body("idList", equalTo(listToDoId)) // assert ListId in response
+				.body("idBoard", equalTo(boardID))// assert BoardId in response
+				.extract().response();
 
-	JsonPath jsCardsAPI = reUsable.extractJson(responseNewCards);
-	cardsAPI_ID = jsCardsAPI.getString("id");
-	String cardsAPI= jsCardsAPI.getString("name");
-	String cardsStatusCloseAPI = jsCardsAPI.getString("closed");
-	
+		JsonPath jsCardsAPI = responseNewCards.jsonPath();
+		cardsAPI_ID = jsCardsAPI.getString("id");
+		String cardsAPI = jsCardsAPI.getString("name");
+		String cardsStatusCloseAPI = jsCardsAPI.getString("closed");
+
 //	// Print
-	Reporter.log("Cards Id Automation API : "+cardsAPI_ID);
-	Reporter.log("Cards Name : "+cardsAPI);
-	Reporter.log("Cards Status Closed : "+cardsStatusCloseAPI);
+		ExtentTest nodeCards = test.createNode("Create Cards");
+		
+		ExtentTest nodeCards1 = nodeCards.createNode("Status Code");
+		nodeCards1.log(Status.INFO, ""+responseNewCards.getStatusCode());
+		
+		ExtentTest nodeCards2 = nodeCards.createNode("Response Body");
+		nodeCards2.log(Status.INFO,""+responseNewCards.getBody().asPrettyString());
 
+		ExtentTest nodeCards3 = nodeCards.createNode("Assertion");
+		nodeCards3.log(Status.INFO, "List Id :" +listToDoId);
+		nodeCards3.log(Status.INFO, "Cards Name : " +cardsAPI);
+		nodeCards3.log(Status.INFO, "Status Closed : " +cardsStatusCloseAPI);
 
 	}
-	
-	
-	
-	@Test(priority=3)
+
+	@Test(priority = 3)
 	public void movingCardsBetweenCreatedList() {
 ////	 D. Write a test to move the card created in the last test to the ‘In-progress’,
 ////    ‘Completed’, ‘In testing’, ‘Done’, ‘Deployed’ List, assert cardId and listId when
 ////     moving to the next list within the same board.
 
-String responseMoveCardsToInProgress = given().pathParam("id", cardsAPI_ID)
-		.queryParam("boardId", boardID)
-		.queryParam("idList", listInProgressId)
-		.queryParam("key",data.key())
-		.queryParam("token",data.token())
-		.header("Content-Type", "application/json")
-		.header("Accept","*/*")
-		.when().put("cards/{id}")
-		.then().log().all()
-		.extract().asString();
-JsonPath jsMoveCardsToInProgress =reUsable.extractJson(responseMoveCardsToInProgress);
-String cardsId1 = jsMoveCardsToInProgress.getString("id");
-String actualBoardId1 = jsMoveCardsToInProgress.getString("idBoard");
-String currentListId1 = jsMoveCardsToInProgress.getString("idList");
+		Response responseMoveCardsToInProgress = given().pathParam("id", cardsAPI_ID)
+				.queryParam("boardId", boardID)
+				.queryParam("idList", listInProgressId)
+				.when().put("cards/{id}")
+				.then()
+				.log().all().extract().response();
+		
+		JsonPath jsMoveCardsToInProgress = responseMoveCardsToInProgress.jsonPath();
+		String cardsId1 = jsMoveCardsToInProgress.getString("id");
+		String actualBoardId1 = jsMoveCardsToInProgress.getString("idBoard");
+		String currentListId1 = jsMoveCardsToInProgress.getString("idList");
 
 ////assert cardId and listId when moving to the next list within the same board.
-Assert.assertEquals(cardsId1, cardsAPI_ID);
-Assert.assertEquals(actualBoardId1,boardID);
-Assert.assertEquals(currentListId1,listInProgressId);
+		Assert.assertEquals(cardsId1, cardsAPI_ID);
+		Assert.assertEquals(actualBoardId1, boardID);
+		Assert.assertEquals(currentListId1, listInProgressId);
 
 ////print cardId and listId when moving to the next list within the same board.
-Reporter.log("Cards Id Automation API : "+cardsId1);
-Reporter.log("Actual Board Id : "+actualBoardId1);
-Reporter.log("Current List Id : "+currentListId1);
+		ExtentTest nodeCardsToIP = test.createNode("Move Cards To In Progress");
+		
+		ExtentTest  nodeCardsToIP1 =  nodeCardsToIP.createNode("Status Code");
+		nodeCardsToIP1.log(Status.INFO, ""+responseMoveCardsToInProgress.getStatusCode());
+		
+		ExtentTest  nodeCardsToIP2 =  nodeCardsToIP.createNode("Response Body");
+		nodeCardsToIP2.log(Status.INFO,""+responseMoveCardsToInProgress.getBody().asPrettyString());
 
-String responseMoveCardsToInTesting = given().pathParam("id", cardsAPI_ID)
-		.queryParam("boardId", boardID)
-		.queryParam("idList", listInTestingId)
-		.queryParam("key",data.key())
-		.queryParam("token",data.token())
-		.header("Content-Type", "application/json")
-		.header("Accept","*/*")
-		.when().put("cards/{id}")
-		.then().log().all()
-		.extract().asString();
+		ExtentTest  nodeCardsToIP3 =  nodeCardsToIP.createNode("Assertion");
+		nodeCardsToIP3.log(Status.INFO, "Board Id :" +actualBoardId1);
+		nodeCardsToIP3.log(Status.INFO, "Cards Id : " +cardsId1);
+		nodeCardsToIP3.log(Status.INFO, "Current List : " +currentListId1);
+		
+		
+		Response responseMoveCardsToInTesting = given().pathParam("id", cardsAPI_ID)
+				.queryParam("boardId", boardID)
+				.queryParam("idList", listInTestingId)
+				.when().put("cards/{id}")
+				.then()
+				.log().all()
+				.extract().response();
 
-JsonPath jsMoveCardsToInTesting = reUsable.extractJson(responseMoveCardsToInTesting);
-String cardsId2 = jsMoveCardsToInTesting.getString("id");
-String actualBoardId2 = jsMoveCardsToInTesting.getString("idBoard");
-String currentListId2 = jsMoveCardsToInTesting.getString("idList");
+		JsonPath jsMoveCardsToInTesting = responseMoveCardsToInTesting.jsonPath();
+		String cardsId2 = jsMoveCardsToInTesting.getString("id");
+		String actualBoardId2 = jsMoveCardsToInTesting.getString("idBoard");
+		String currentListId2 = jsMoveCardsToInTesting.getString("idList");
 //
 ////assert cardId and listId when moving to the next list within the same board.
-Assert.assertEquals(cardsId2, cardsAPI_ID);
-Assert.assertEquals(actualBoardId2,boardID);
-Assert.assertEquals(currentListId2,listInTestingId);
+		Assert.assertEquals(cardsId2, cardsAPI_ID);
+		Assert.assertEquals(actualBoardId2, boardID);
+		Assert.assertEquals(currentListId2, listInTestingId);
 //
 ////print cardId and listId when moving to the next list within the same board.
-Reporter.log("Cards Id Automation API : "+cardsId2);
-Reporter.log("Actual Board Id : "+actualBoardId2);
-Reporter.log("Current List Id : "+currentListId2);
+		ExtentTest nodeCardsToIT = test.createNode("Move Cards To In Testing");
+		
+		ExtentTest  nodeCardsToIT1 =  nodeCardsToIT.createNode("Status Code");
+		nodeCardsToIT1.log(Status.INFO, ""+responseMoveCardsToInTesting.getStatusCode());
+		
+		ExtentTest  nodeCardsToIT2 =  nodeCardsToIT.createNode("Response Body");
+		nodeCardsToIT2.log(Status.INFO,""+responseMoveCardsToInTesting.getBody().asPrettyString());
+		
+		ExtentTest  nodeCardsToIT3 =  nodeCardsToIT.createNode("Assertion");
+		nodeCardsToIT3.log(Status.INFO, "Board Id :" +actualBoardId2);
+		nodeCardsToIT3.log(Status.INFO, "Cards Id : " +cardsId2);
+		nodeCardsToIT3.log(Status.INFO, "Current List : " +currentListId2);
 
-String responseMoveCardsToDone = given().pathParam("id", cardsAPI_ID)
-		.queryParam("boardId", boardID)
-		.queryParam("idList", listDoneId)
-		.queryParam("key",data.key())
-		.queryParam("token",data.token())
-		.header("Content-Type", "application/json")
-		.header("Accept","*/*")
-		.when().put("cards/{id}")
-		.then().log().all()
-		.extract().asString();
+		Response responseMoveCardsToDone = given().pathParam("id", cardsAPI_ID)
+				.queryParam("boardId", boardID)
+				.queryParam("idList", listDoneId)
+				.when().put("cards/{id}").then()
+				.log().all()
+				.extract().response();
 
-JsonPath jsMoveCardsToDone = reUsable.extractJson(responseMoveCardsToDone);
-String cardsId3 = jsMoveCardsToDone.getString("id");
-String actualBoardId3 = jsMoveCardsToDone.getString("idBoard");
-String currentListId3 = jsMoveCardsToDone.getString("idList");
+		JsonPath jsMoveCardsToDone = responseMoveCardsToDone.jsonPath();
+		String cardsId3 = jsMoveCardsToDone.getString("id");
+		String actualBoardId3 = jsMoveCardsToDone.getString("idBoard");
+		String currentListId3 = jsMoveCardsToDone.getString("idList");
 
 //assert cardId and listId when moving to the next list within the same board.
-Assert.assertEquals(cardsId3, cardsAPI_ID);
-Assert.assertEquals(actualBoardId3,boardID);
-Assert.assertEquals(currentListId3,listDoneId);
+		Assert.assertEquals(cardsId3, cardsAPI_ID);
+		Assert.assertEquals(actualBoardId3, boardID);
+		Assert.assertEquals(currentListId3, listDoneId);
 
 //print cardId and listId when moving to the next list within the same board.
-Reporter.log("Cards Id Automation API : "+cardsId3);
-Reporter.log("Actual Board Id : "+actualBoardId3);
-Reporter.log("Current List Id : "+currentListId3);
+		ExtentTest nodeCardsToDN = test.createNode("Move Cards To Done");
+		
+		ExtentTest  nodeCardsToDN1 =  nodeCardsToDN.createNode("Status Code");
+		nodeCardsToDN1.log(Status.INFO, ""+responseMoveCardsToDone.getStatusCode());
+		
+		ExtentTest  nodeCardsToDN2 =  nodeCardsToIT.createNode("Response Body");
+		nodeCardsToDN2.log(Status.INFO,""+responseMoveCardsToDone.getBody().asPrettyString());
+		
+		ExtentTest  nodeCardsToDN3 =  nodeCardsToIT.createNode("Assertion");
+		nodeCardsToDN3.log(Status.INFO, "Board Id :" +actualBoardId3);
+		nodeCardsToDN3.log(Status.INFO, "Cards Id : " +cardsId3);
+		nodeCardsToDN3.log(Status.INFO, "Current List : " +currentListId3);
 
+		
+		Response responseMoveCardsToDeployed = given().pathParam("id", cardsAPI_ID)
+				.queryParam("boardId", boardID)
+				.queryParam("idList", listDeployedId)
+				.when().put("cards/{id}")
+				.then()
+				.log().all()
+				.extract().response();
 
-String responseMoveCardsToDeployed = given().pathParam("id", cardsAPI_ID)
-		.queryParam("boardId", boardID)
-		.queryParam("idList", listDeployedId)
-		.queryParam("key",data.key())
-		.queryParam("token",data.token())
-		.header("Content-Type", "application/json")
-		.header("Accept","*/*")
-		.when().put("cards/{id}")
-		.then().log().all()
-		.extract().asString();
-
-JsonPath jsMoveCardsToDeployed = reUsable.extractJson(responseMoveCardsToDeployed);
-String cardsId4 = jsMoveCardsToDeployed.getString("id");
-String actualBoardId4 = jsMoveCardsToDeployed.getString("idBoard");
-String currentListId4 = jsMoveCardsToDeployed.getString("idList");
-
+		JsonPath jsMoveCardsToDeployed = responseMoveCardsToDeployed.jsonPath();
+		String cardsId4 = jsMoveCardsToDeployed.getString("id");
+		String actualBoardId4 = jsMoveCardsToDeployed.getString("idBoard");
+		String currentListId4 = jsMoveCardsToDeployed.getString("idList");
 
 //assert cardId and listId when moving to the next list within the same board.
-Assert.assertEquals(cardsId4, cardsAPI_ID);
-Assert.assertEquals(actualBoardId4,boardID);
-Assert.assertEquals(currentListId4,listDeployedId);
-
+		Assert.assertEquals(cardsId4, cardsAPI_ID);
+		Assert.assertEquals(actualBoardId4, boardID);
+		Assert.assertEquals(currentListId4, listDeployedId);
 
 //print cardId and listId when moving to the next list within the same board.
-Reporter.log("Cards Id Automation API : "+cardsId4);
-Reporter.log("Actual Board Id : "+actualBoardId4);
-Reporter.log("Current List Id : "+currentListId4);
+		ExtentTest nodeCardsToDplyd = test.createNode("Move Cards To Deployed");
+		
+		ExtentTest  nodeCardsToDplyd1 =  nodeCardsToDplyd.createNode("Status Code");
+		nodeCardsToDplyd1.log(Status.INFO, ""+responseMoveCardsToDeployed.getStatusCode());
+		
+		ExtentTest  nodeCardsToDplyd2 =  nodeCardsToDplyd.createNode("Response Body");
+		nodeCardsToDplyd2.log(Status.INFO,""+responseMoveCardsToDeployed.getBody().asPrettyString());
+		
+		ExtentTest  nodeCardsToDplyd3 =  nodeCardsToDplyd.createNode("Assertion");
+		nodeCardsToDplyd3.log(Status.INFO, "Board Id :" +actualBoardId4);
+		nodeCardsToDplyd3.log(Status.INFO, "Cards Id : " +cardsId4);
+		nodeCardsToDplyd3.log(Status.INFO, "Current List : " +currentListId4);
+		
 
-String responseMoveCardsToCompleted = given().pathParam("id", cardsAPI_ID)
-		.queryParam("boardId", boardID)
-		.queryParam("idList", listCompletedId)
-		.queryParam("key",data.key())
-		.queryParam("token",data.token())
-		.header("Content-Type", "application/json")
-		.header("Accept","*/*")
-		.when().put("cards/{id}")
-		.then().log().all()
-		.extract().asString();
+		Response responseMoveCardsToCompleted = given().pathParam("id", cardsAPI_ID)
+				.queryParam("boardId", boardID)
+				.queryParam("idList", listCompletedId)
+				.when().put("cards/{id}").then()
+				.log().all().extract().response();
 
-JsonPath jsMoveCardsToCompleted = reUsable.extractJson(responseMoveCardsToCompleted);
-String cardsId5 = jsMoveCardsToCompleted.getString("id");
-String actualBoardId5 = jsMoveCardsToCompleted.getString("idBoard");
-String currentListId5 = jsMoveCardsToCompleted.getString("idList");
-
+		JsonPath jsMoveCardsToCompleted = responseMoveCardsToCompleted.jsonPath();
+		String cardsId5 = jsMoveCardsToCompleted.getString("id");
+		String actualBoardId5 = jsMoveCardsToCompleted.getString("idBoard");
+		String currentListId5 = jsMoveCardsToCompleted.getString("idList");
 
 //assert cardId and listId when moving to the next list within the same board.
-Assert.assertEquals(cardsId5, cardsAPI_ID);
-Assert.assertEquals(actualBoardId5,boardID);
-Assert.assertEquals(currentListId5,listCompletedId);
+		Assert.assertEquals(cardsId5, cardsAPI_ID);
+		Assert.assertEquals(actualBoardId5, boardID);
+		Assert.assertEquals(currentListId5, listCompletedId);
 
 //Print cardId and listId when moving to the next list within the same board.
-Reporter.log("Cards Id Automation API : "+cardsId5);
-Reporter.log("Actual Board Id : "+actualBoardId5);
-Reporter.log("Current List Id : "+currentListId5);
+		ExtentTest nodeCardsToCmpltd = test.createNode("Move Cards To Completed");
+		
+		ExtentTest  nodeCardsToCmpltd1 =  nodeCardsToCmpltd.createNode("Status Code");
+		nodeCardsToCmpltd1.log(Status.INFO, ""+responseMoveCardsToCompleted.getStatusCode());
+		
+		ExtentTest  nodeCardsToCmpltd2 =  nodeCardsToCmpltd.createNode("Response Body");
+		nodeCardsToCmpltd2.log(Status.INFO,""+responseMoveCardsToCompleted.getBody().asPrettyString());
+		
+		ExtentTest  nodeCardsToCmpltd3 =  nodeCardsToCmpltd.createNode("Assertion");
+		nodeCardsToCmpltd3.log(Status.INFO, "Board Id :" +actualBoardId5);
+		nodeCardsToCmpltd3.log(Status.INFO, "Cards Id : " +cardsId5);
+		nodeCardsToCmpltd3.log(Status.INFO, "Current List : " +currentListId5);
 	}
-
-
 
 //// Delete Boards
 
-	@Test(priority=4)
+	@Test(priority = 4)
 	public void DeleteBoards() {
-		given().pathParam("id", boardID)
-		.queryParam("listId", listInProgressId)
-		.queryParam("key",data.key())
-		.queryParam("token",data.token()).queryParam("idList",listToDoId)
-		.header("Content-Type", "application/json")
-		.header("Accept","*/*")
-		.when().delete("boards/{id}")
-		.then().log().all()
-		.assertThat().statusCode(200);
-			
-	}
+		
+		Response delete = given().pathParam("id", boardID)
+				.when().delete("boards/{id}")
+				.then()
+				.log().all()
+				.assertThat().statusCode(200).extract().response();
+		
 
-	
-	
-	
+		
+		ExtentTest nodeDelete = test.createNode("Delete");
+		ExtentTest  nodeDltd1 =  nodeDelete.createNode("Status Code");
+		nodeDltd1.log(Status.INFO, ""+delete.getStatusCode());
+		
+
+	}
 
 }

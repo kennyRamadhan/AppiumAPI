@@ -5,8 +5,8 @@
     <classes>
       <class name="TrelloE2E">
         <methods>
-          <include name="movingCardsBetweenCreatedList"/>
-          <include name="createCards"/>
+          <include name="setUp"/>
+          <include name="CreateBoards"/>
         </methods>
       </class> <!-- TrelloE2E -->
     </classes>

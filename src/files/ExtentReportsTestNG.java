@@ -8,7 +8,7 @@ import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import com.aventstack.extentreports.reporter.configuration.Theme;
 
 public class ExtentReportsTestNG {
-	ExtentReports extent;
+	public static ExtentReports extent;
 
 	public ExtentReports getExtendReport() {
         String timestamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
