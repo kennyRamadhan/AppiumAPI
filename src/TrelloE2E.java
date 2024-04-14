@@ -160,7 +160,7 @@ public class TrelloE2E extends files.Listeners {
 		nodeInprog2.log(Status.INFO,""+responseInProgress.getBody().asPrettyString());
 
 		ExtentTest nodeInProg3 = nodeInprog.createNode("Assertion");
-		nodeInProg3.log(Status.INFO, "List Id :" +listToDoId);
+		nodeInProg3.log(Status.INFO, "List Id :" +listInProgressId);
 		nodeInProg3.log(Status.INFO, "List Name Is : " +listNameInProgress);
 		nodeInProg3.log(Status.INFO, "View Type Is : " +listStatusClosedInProgress);
 	
@@ -191,7 +191,7 @@ public class TrelloE2E extends files.Listeners {
 		nodeCmpltd2.log(Status.INFO,""+responseCompleted.getBody().asPrettyString());
 
 		ExtentTest nodeCmpltd3 = nodeCmpltd.createNode("Assertion");
-		nodeCmpltd3.log(Status.INFO, "List Id :" +listToDoId);
+		nodeCmpltd3.log(Status.INFO, "List Id :" +listCompletedId);
 		nodeCmpltd3.log(Status.INFO, "List Name Is : " +listNameCompleted);
 		nodeCmpltd3.log(Status.INFO, "View Type Is : " +listStatusClosedCompleted);
 
@@ -225,7 +225,7 @@ public class TrelloE2E extends files.Listeners {
 		nodeInTesting2.log(Status.INFO,""+responseInTesting.getBody().asPrettyString());
 
 		ExtentTest nodeInTesting3 = nodeInTesting.createNode("Assertion");
-		nodeInTesting3.log(Status.INFO, "List Id :" +listToDoId);
+		nodeInTesting3.log(Status.INFO, "List Id :" +listInTestingId);
 		nodeInTesting3.log(Status.INFO, "List Name Is : " +listNameInTesting);
 		nodeInTesting3.log(Status.INFO, "View Type Is : " +listStatusClosedInTesting);
 
@@ -261,7 +261,7 @@ public class TrelloE2E extends files.Listeners {
 		nodeDone2.log(Status.INFO,""+responseDone.getBody().asPrettyString());
 
 		ExtentTest nodeDone3 = nodeDone.createNode("Assertion");
-		nodeDone3.log(Status.INFO, "List Id :" +listToDoId);
+		nodeDone3.log(Status.INFO, "List Id :" +listDoneId);
 		nodeDone3.log(Status.INFO, "List Name Is : " +listNameDone);
 		nodeDone3.log(Status.INFO, "View Type Is : " +listStatusClosedDone);
 
@@ -295,7 +295,7 @@ public class TrelloE2E extends files.Listeners {
 		nodeDplyd2.log(Status.INFO,""+responseDeployed.getBody().asPrettyString());
 
 		ExtentTest nodeDplyd3 = nodeDplyd.createNode("Assertion");
-		nodeDplyd3.log(Status.INFO, "List Id :" +listToDoId);
+		nodeDplyd3.log(Status.INFO, "List Id :" +listDeployedId);
 		nodeDplyd3.log(Status.INFO, "List Name Is : " +listNameDeployed);
 		nodeDplyd3.log(Status.INFO, "View Type Is : " +listStatusClosedDeployed);
 	}
@@ -366,7 +366,6 @@ public class TrelloE2E extends files.Listeners {
 		
 		ExtentTest  nodeCardsToIP1 =  nodeCardsToIP.createNode("Status Code");
 		nodeCardsToIP1.log(Status.INFO, ""+responseMoveCardsToInProgress.getStatusCode());
-		
 		ExtentTest  nodeCardsToIP2 =  nodeCardsToIP.createNode("Response Body");
 		nodeCardsToIP2.log(Status.INFO,""+responseMoveCardsToInProgress.getBody().asPrettyString());
 
